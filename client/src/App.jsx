@@ -13,12 +13,19 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [cart, setCart] = useState([]);
-  const removeFromCart = (index) => {
+
+  const removeFromCart = (indexOrAll) => {
+    if (indexOrAll === "all") {
+      setCart([]);
+      localStorage.removeItem("cart");
+
+      return;
+    }
+
     setCart((prevCart) => {
       const updatedCart = [...prevCart];
-      updatedCart.splice(index, 1); // Remove item at the specified index
+      updatedCart.splice(indexOrAll, 1);
 
-      // Update local storage
       localStorage.setItem("cart", JSON.stringify(updatedCart));
 
       return updatedCart;
@@ -26,7 +33,6 @@ function App() {
     toast.info("Item has been removed from Cart", { position: "top-left" });
   };
 
-  // Load cart items from localStorage on component mount
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
     if (storedCart) {

@@ -73,11 +73,11 @@ const Customizer = ({ cart, setCart }) => {
 
   const calculatePrice = () => {
     let price = 0;
-    if (activeFilterTab.logoShirt) {
-      price = price + 200;
+    if (activeFilterTab.logoShirt && !activeFilterTab.stylishShirt) {
+      price = price + 1000;
     }
-    if (activeFilterTab.stylishShirt) {
-      price = price + 150;
+    if (activeFilterTab.logoShirt && activeFilterTab.stylishShirt) {
+      price = price + 1500;
     }
 
     return price;
@@ -97,6 +97,7 @@ const Customizer = ({ cart, setCart }) => {
 
     const imageData = downloadCanvasToImageCart();
     let price = calculatePrice();
+
     const obj = {
       title: "Half Sleeve Shirt",
       price: price,
@@ -112,6 +113,7 @@ const Customizer = ({ cart, setCart }) => {
 
     handleClose();
     setQuantity(1);
+    setPrice(0);
     setSelectedOption("");
     toast.success("Product Added To Cart", { position: "top-left" });
   };
