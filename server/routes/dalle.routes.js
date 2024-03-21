@@ -1,4 +1,4 @@
-import express from 'express'
+/* import express from 'express'
 import * as dotenv from 'dotenv'
 import OpenAI from 'openai'
 
@@ -35,4 +35,4 @@ router.route('/').post(async (req, res) => {
     }
 })
 
-export default router
+export default router */
